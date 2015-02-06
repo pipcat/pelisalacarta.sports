@@ -90,11 +90,13 @@ def get_links(match, plot=""):
     matches2 = re.compile(patron2,re.DOTALL).findall(match)
     for nombre,idioma,tipo,calidad,enlace in matches2:
         tipo = tipo.strip()
-        titulo = nombre + ' - ' + idioma + ' - ' + calidad.replace('<!--9000-->','').replace(' (<span class="es">e</span>stable)','') + ' kbps - ' + SPT.formatear_server(tipo)
+        calidad = calidad.replace('<!--9000-->','').replace(' (<span class="es">e</span>stable)','')
+        titulo = nombre + ' - ' + idioma + ' - ' + calidad + ' kbps - ' + SPT.formatear_server(tipo)
         url = enlace.replace('#www.rojadirecta.me','').replace('goto/','http://')
-        itemlist.append( Item(channel="sports-main", action="play" , title=titulo , url=url, plot=plot))
+        itemlist.append( Item(channel="sports-main", action="play" , title=titulo , url=url, plot=plot, extra=calidad))
 
-    return itemlist
+    return sorted(itemlist, key=lambda k: int(k.extra), reverse=True) #ordenada por calidad
+    #return itemlist
 
 
 def extraer_titulo(match):
@@ -109,4 +111,3 @@ def extraer_titulo(match):
     sname = re.sub(r'<[^>]*>', '', sname)
 
     return stime, sinfo.strip(), sname.strip()
-
