@@ -19,12 +19,16 @@ def find_url_play(data, headers):
 
     '''
 <script type='text/javascript'> width=500, height=400, channel='xxx', g='1';</script><script type='text/javascript' src='http://www.embedezcast.com/static/scripts/ezcast.js'></script>
+
+<script type='text/javascript'> width=726, height=500, channel='danysportscoru', g='1';</script><script type='text/javascript' src='http://www.ezcast.tv/static/scripts/ezcast.js'></script>
     '''
 
-    fid = scrapertools.find_single_match (data, "channel=['\"]([^'\"]+)['\"][^<]+</script><script type=['\"]text/javascript['\"] src=['\"]http://www.embedezcast.com/static/scripts/ezcast.js['\"]")
     #fid = scrapertools.find_single_match (data, "channel=['\"]([^'\"]+)['\"].*?<script type=['\"]text/javascript['\"] src=['\"]http://www.embedezcast.com/static/scripts/ezcast.js['\"]")
+    fid = scrapertools.find_single_match (data, "channel=['\"]([^'\"]+)['\"][^<]+</script><script type=['\"]text/javascript['\"] src=['\"]http://www.embedezcast.com/static/scripts/ezcast.js['\"]")
     if fid == '':
-        return ''
+        fid = scrapertools.find_single_match (data, "channel=['\"]([^'\"]+)['\"][^<]+</script><script type=['\"]text/javascript['\"] src=['\"]http://www.ezcast.tv/static/scripts/ezcast.js['\"]")
+        if fid == '':
+            return ''
 
     pageurl = 'http://www.embedezcast.com/embedded/%s/1/500/400' % fid  # http://www.embedezcast.com/embedded/xxx/1/500/400
     data2 = scrapertools.cachePage(pageurl, headers=headers)
@@ -53,5 +57,6 @@ def find_url_play(data, headers):
     swfurl = 'http://www.embedezcast.com' + scrapertools.find_single_match (data2, 'new SWFObject\("([^"]+)"')
 
     url = '%s playpath=%s?id=%s swfVfy=1 timeout=15 conn=S:OK live=true swfUrl=%s pageUrl=%s' % (rtmpurl, svalue, idvalue, swfurl, pageurl)
+    #url = '%s playpath=%s?id=%s timeout=15 conn=S:OK live=1 swfUrl=%s pageUrl=%s --live' % (rtmpurl, svalue, idvalue, swfurl, pageurl)
 
     return url
