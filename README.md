@@ -73,7 +73,7 @@ Detección de videos en diferentes servidores
 - [x] lshstream : ok
 - [x] iguide : ok
 - [x] tutele : ok
-- [x] ustream : ok
+- [x] ustream, megatvhd : ok
 - [x] myhdcast/liveligatv : ok
 - [x] goodcast/tuttosportweb : ok
 - [x] liveall, leton : ok
