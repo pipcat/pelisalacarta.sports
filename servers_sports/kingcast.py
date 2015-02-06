@@ -29,7 +29,7 @@ def find_url_play(data, headers):
     data2 = scrapertools.cachePage(pageurl, headers=headers)
     if (DEBUG): logger.info("data2="+data2)
 
-'''
+    '''
 <script type="text/javascript" src="/jwplayer/jwplayer.js"></script>
 <script>jwplayer.key="5XXb+w0txH2+cnkwOtAOWXU39zFQbZ6VT9mOA6R83tk="</script>
 
@@ -87,7 +87,8 @@ autostart: "true",
 primary: "flash"
 });
 </script>-->
-'''
+    '''
+
     rtmpurl = scrapertools.find_single_match (data2, "file:\s*['\"]([^'\"]*)")
 
     swfurl = 'http://www.kingcast.tv/jwplayer/jwplayer.flash.swf'
