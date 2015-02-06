@@ -44,17 +44,22 @@ def mainlist(item):
 # BUSCAR ENLACES A VIDEOS :
 # =========================
 
+def corregir_url(url):
+    if url == 'http://tuttosportweb.com':
+        return 'http://tuttosportweb.com/update/ch1.php'
+    aux = scrapertools.find_single_match (url, "tuttosportweb.com/([\w]+.php)")
+    if aux != '':
+        return 'http://tuttosportweb.com/update/%s' % aux
+
+    url = url.replace("kasimirotv.net/canal", "kasimirotv.net/player")
+
+    return url
+
 def play(item):
     logger.info("[sports-main.py] play")
     itemlist = []
 
-    # Corrección de urls
-    if item.url == 'http://tuttosportweb.com':
-        item.url = 'http://tuttosportweb.com/update/ch1.php'
-    else:
-        aux = scrapertools.find_single_match (item.url, "tuttosportweb.com/([\w]+.php)")
-        if aux != '':
-            item.url = 'http://tuttosportweb.com/update/%s' % aux
+    item.url = corregir_url(item.url)
 
     data = scrapertools.cachePage(item.url,headers=SPT.DEFAULT_HEADERS)
 
@@ -130,4 +135,3 @@ def buscar_url_valida(data, headers):
                     logger.error(line_split)
 
     return '' # no encontrada
-
