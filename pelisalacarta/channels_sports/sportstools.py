@@ -16,7 +16,7 @@ if MIEQUIPO == '':
 # Detección de enlaces en los siguientes servidores de deportes, ubicados en servers_sports
 SPORTS_SERVERS = ['lshstream', '04stream', 'iguide', 'ucaster', 'ezcast']
 SPORTS_SERVERS.extend( ['ustream', 'tutele', 'livego', 'myhdcast', 'goodcast'] )
-SPORTS_SERVERS.extend( ['jjcast', 'liveall', 'leton', 'kingcast'] )
+SPORTS_SERVERS.extend( ['jjcast', 'liveall', 'leton', 'kingcast', 'megatvhd'] )
 
 DEFAULT_HEADERS=[]
 DEFAULT_HEADERS.append(["User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:20.0) Gecko/20100101 Firefox/20.0"])
