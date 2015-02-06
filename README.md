@@ -78,6 +78,7 @@ Detección de videos en diferentes servidores
 - [x] goodcast/tuttosportweb : ok
 - [x] liveall, leton : ok
 - [x] jjcast : ok
+- [x] kingcast/kasimirotv : ok
 - [ ] ucaster/tashtv : url final teóricamente resuelta, pero falla
 - [ ] ezcast : teóricamente resuelta url, pero falla
 - [ ] 04stream : teóricamente resuelta url, pero pendiente comprobarlo
